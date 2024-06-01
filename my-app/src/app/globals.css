@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CustomCarousel.css */
+.custom-arrow {
+ 
+  transform: translateY(-50%);
+  width: 100px; /* Ancho de la flecha */
+  height: 100px; /* Altura de la flecha */
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+
+.custom-arrow::before {
+  font-size: 44px; /* Tamaño del icono de la flecha */
+  opacity: 0.75; /* Opacidad del icono de la flecha */
+  color: rgb(255, 255, 255); /* Color del icono de la flecha */
+}
+
+/* Estilos de puntos de navegación de carrusel */
+.slick-dots {
+  position: absolute;
+  bottom: 0px; /* Ajusta según necesites */
+  width: 100%;
+  /* display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0; */
+}
+
+.slick-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px; /* Ajusta el tamaño de los puntos */
+  color: rgba(97, 150, 235, 0.75); /* Color de los puntos no activos */
+  opacity: 0.75;
+}
+
+.slick-dots li.slick-active button:before {
+  color: rgba(20, 57, 179, 0.884); /* Color de los puntos activos */
+  opacity: 1;
+}
