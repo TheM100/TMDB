@@ -1,5 +1,6 @@
 "use client";
 import { fetchPopularMovies } from "@/API/Movies/response";
+import { fetchPopularSeries } from "@/API/Movies/response";
 import { fetchNowPlayingMovies } from "@/API/Movies/response";
 import { fetchTopRatedMovies } from "@/API/Movies/response";
 import { fetchUpcomingMovies } from "@/API/Movies/response";
@@ -13,20 +14,32 @@ export default function Home() {
   const [moviesPN, setMoviesPN] = useState([]);
   const [moviesPopular, setMoviesPopular] = useState([]);
   const [moviesUpcoming, setMoviesUpcomig] = useState([]);
+
+  const [seriesPopular, setSeriesPopular] = useState([]);
   // const [moviesFamily, setMoviesFamily] = useState([]);
 
   useEffect(() => {
     async function loadMovies() {
 
-      //FECTH PARA CARRUCEL TOP RATED
-      const moviesData = await fetchTopRatedMovies();
-      setMovies(moviesData);
-      // console.log(moviesData)
-
       //FECTH PARA CARRUCEL POPULAR
       const moviesDataPopu = await fetchPopularMovies();
       setMoviesPopular(moviesDataPopu);
 
+      const seriesDataPopu = await fetchPopularSeries();
+      setSeriesPopular(seriesDataPopu);
+      console.log(seriesDataPopu)
+
+
+      //FECTH PARA CARRUCEL TOP RATED
+      const moviesData = await fetchTopRatedMovies();
+      setMovies(moviesData);
+
+      //FECTH PARA CARRUCEL PLAYING NOW
+      const moviesDataPN = await fetchNowPlayingMovies();
+      setMoviesPN(moviesDataPN);
+    
+
+      
       //FECTH PARA CARRUCEL UPCOMING
       const moviesDataUPCOMING = await fetchUpcomingMovies();
       setMoviesUpcomig(moviesDataUPCOMING);
@@ -35,19 +48,7 @@ export default function Home() {
     loadMovies();
   }, []);
 
-  useEffect(() => {
-    async function loadMovies() {
-      const moviesData = await fetchNowPlayingMovies();
-      setMoviesPN(moviesData);
-      // console.log(moviesData)
-
-    }
-
-    loadMovies();
-  }, []);
-
  
-
   // useEffect(() => {
   //   async function loadMovies() {
   //     const moviesData = await fetchMovies();
