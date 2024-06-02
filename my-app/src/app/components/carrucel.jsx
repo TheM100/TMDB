@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Moviecard from "./Moviecard";
+import classnames from "classnames";
 import "../globals.css";
 
 function SampleNextArrow(props) {
@@ -33,15 +34,17 @@ function SamplePrevArrow(props) {
   );
 }
 
-function Carrucel() {
+function Carrucel(props) {
+  const { title, movies } = props;
+  // console.log(topMovies)
   const settings = {
     dots: true,
     infinite: true,
     slidesToShow: 6,
     slidesToScroll: 2,
     autoplay: true,
-    speed: 3000, // Duración de la animación de desplazamiento
-    autoplaySpeed: 9000,
+    speed: 1000, // Duración de la animación de desplazamiento
+    autoplaySpeed: 3000,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     appendDots: dots => (
@@ -52,18 +55,12 @@ function Carrucel() {
   };
     return (
        <>
-       <div className='h-96 w-full my-4 border-2 border-white flex flex-col justify-center rounded-lg'>
-       <h4 className="text-white text-xl">+ Popular</h4>
-       <Slider {...settings} className="w-full h-5/6  text-white ">
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
-          <Moviecard/>
+       <div className='h-96 w-full my-4  flex flex-col  rounded-lg'>
+       <h4 className="text-white text-xl ml-10">{title}</h4>
+       <Slider {...settings} className="w-full h-6/6   text-white ">
+          {movies.map(movie => (
+            <Moviecard key={movie.id} poster={movie.poster_path}/>
+          ))}
           
       </Slider>
        </div>

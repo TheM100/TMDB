@@ -1,10 +1,13 @@
-function Moviecard() {
+function Moviecard(props) {
+  const { poster} = props;
+  const imageUrl = `https://image.tmdb.org/t/p/w200${poster}`;
+  // console.log(imageUrl);
     return (
-      <div className="w-11/12 h-5/6 bg-green-500 flex flex-col items-center justify-center rounded-lg">
+      <div className="w-11/12 h-5/6  rounded-lg">
        
         <img
           className="w-full h-full object-scale-down rounded-lg"
-          src="https://picsum.photos/400/520"
+          src={imageUrl}
           alt=""
         />
       </div>
